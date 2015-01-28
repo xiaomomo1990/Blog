@@ -312,8 +312,7 @@ module.exports = function (app) {
     //更新文章
     app.post("/edit/:class/:_id", function (req, res) {
         var currentUser = req.session.user,
-            post = new Post(),
-            bufferhelper = new Bufferhelper();
+            post = new Post();
         var urlEdit = "/edit/" + encodeURIComponent(req.params.class) + "/" + req.params._id,
             urlActicle = "/acticle/" + encodeURIComponent(req.params.class) + "/" + req.params._id;
 
