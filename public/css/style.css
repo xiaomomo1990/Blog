@@ -1,0 +1,33 @@
+/*
+ * reset CSS
+ */
+.navbar-inverse{ background-color:#563d7c;}
+.navbar-inverse .navbar-nav>li>a,.navbar-inverse .navbar-brand{ color:#e0dfe1;}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus,.navbar-inverse .navbar-toggle:hover,.navbar-inverse .navbar-toggle:focus{background-color:#473266; color:#fff;}
+.btn-primary{ background-color:#563d7c;}
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{background-color:#473266;}
+.form-control:focus {
+  border-color: #563d7c;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(71, 50, 102, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(71, 50, 102, .6);
+}
+
+*{padding:0;margin:0;}
+.mainCotainer{ padding-top:60px;}
+.loginContainer{ margin-top:30px;}
+
+.acticle_item{ padding:20px 0px; border-bottom:1px solid #ccc;}
+.acticle_title a{ font-weight:bold; color:#563d7c;}
+.info{ line-height:24px;}
+.info .item{ vertical-align:middle; margin-right:6px;color:#444;}
+.info a{ color:#563d7c; font-weight:bold;}
+.info .gray{ color:#bbb;}
+
+.userNameWarn{ visibility:hidden;}
+
+.acticle_item{position:relative; padding-bottom:30px;}
+.acticle_item .operation{ position:absolute; left:0px; bottom:10px;}
+.acticle_item .operation a{ display:inline-block; cursor:pointer; margin-right:10px; color:#888;}
+.acticle_item .operation .edit,.acticle_item .operation .delete{ visibility:hidden;}
+.acticle_item:hover .operation .edit,.acticle_item:hover .operation .delete{ visibility:visible;}

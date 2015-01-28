@@ -1,0 +1,78 @@
+<%- include header %>
+<% if(!codeFlag&&!codeId){ %>
+<!-- 邀请码 Start -->
+
+<form role="form" method="post">
+<div class="row loginContainer">
+  <div class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1">
+  <% if (errorCode) { %>
+  <div class="alert alert-warning" role="alert"><%= errorCode %> </div>
+  <% } %>
+  <div class="form-group">
+    <label for="code">邀请码:</label>
+    <input type="text" name="code" class="form-control" id="code" placeholder="请输入您的邀请码">
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+  </div>
+  </div>
+  </form>
+<!-- 邀请码 End -->
+<% }else { %>
+
+<!-- 注册信息 Start -->
+<form role="form" method="post">
+<div class="row loginContainer">
+  <div class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1">
+  <div class="form-group <% if(errorName){%>has-error<%}%>">
+    <label for="userName">用户名:</label>
+    <input type="text" name="name" class="form-control" id="userName" placeholder="请输入您的用户名" name="name">
+	<span class="label label-warning userNameWarn">该用户名已被注册</span>
+  </div>
+  <div class="form-group <% if(errorPwd){%>has-error<%}%>">
+    <label for="exampleInputPassword1">密码:</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="请输入您的密码">
+  </div> 
+  <div class="form-group <% if(errorPwd_re){%>has-error<%}%>">
+    <label for="exampleInputPasswordRepeat">确认密码:</label>
+    <input type="password" name="password-repeat" class="form-control" id="exampleInputPasswordRepeat" placeholder="请输入您的密码">
+  </div>
+  <div class="form-group <% if(errorEmail){%>has-error<%}%>">
+    <label for="email">邮箱:</label>
+    <input type="email" name="email" class="form-control" id="email" placeholder="邮箱">
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block">注册</button>
+  </div>
+  </div>
+  </form>
+  <% } %>
+<!-- 注册信息 End -->
+  <script type="text/javascript">
+
+        $("#userName").bind("keyup",mouseEvent);
+
+        function mouseEvent() {
+            
+            $("#userName").unbind("mouseup",mouseEvent);
+
+            window.setTimeout(function () {
+				getVal.apply($("#userName")); //执行mouseup需要处理事件
+                $("#userName").bind("keyup", mouseEvent);
+            }, 1000);
+        }
+
+        function getVal() {
+            var _that = $(this),
+                _val = _that.val();
+            $.getJSON("/checkUserName?name="+_val, function(data) {
+				//该用户名已被注册
+				if(data.status){
+					$(".userNameWarn").css("visibility","visible");
+				}
+				else{
+					$(".userNameWarn").css("visibility","hidden");
+				}
+			});
+        } 
+
+    </script>
+<%- include footer %>

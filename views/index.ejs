@@ -1,0 +1,88 @@
+<%- include header %>
+<div class="acticle_list">
+<% posts.forEach(function (post, index) { %>
+  <div class="acticle_item">
+  <h4 class="acticle_title"><a href="/acticle/<%= post.class %>/<%= post._id %>"><%= post.title %></a></h4>
+  <div class="info">
+	<span class="item">
+    作者：<a href="/acticle?authodId=<%= post.authodId %>"><%= post.name %></a></span> <span class="item gray">|</span>
+	<span class="item">  
+    日期：<%= post.time.minute %> </span> <span class="item gray">|</span>
+	<span class="item">
+	分类：<a href="/acticle/<%= post.class %>"><%= post.class %></a></span>
+  </div>
+  <p><%- post.summary %></p>
+  
+  <div class="operation">
+	<a class="comment">评论</a>
+	<% if(user&&post.name==user.name) {%>
+	<a class="edit" href="/edit/<%= post.class %>/<%= post._id %>">编辑</a>
+	<a class="delete" data-toggle="modal" data-target="#myModal" data-whatever="<%= post._id %>">删除</a>
+	  <%}%>
+  </div>
+  </div>
+<% }) %>
+</div>
+
+<!-- 弹出框 Start -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">警告框</h4>
+      </div>
+      <div class="modal-body">
+        此操作不可逆，确定要删除该文章
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary delete">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 弹出框 End -->
+
+<!-- tip Start -->
+<!-- Modal -->
+<div class="modal fade" id="tip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        此操作不可逆，确定要删除该文章
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- tip End -->
+
+<script>
+	$('#myModal').on('show.bs.modal', function (e) {
+		// do something...	
+		var target = $(e.relatedTarget),
+			data = target.data("whatever");
+		var modal = $(this),
+			deleteBtn = modal.find(".delete"),
+			tip = $("#tip"),
+			modalBody = tip.find(".modal-body");  
+			
+		deleteBtn.bind("click",function(){
+			 
+			 $.getJSON("/delete/"+data, function(data) {				
+				//该用户名已被注册
+				if(data.status){					
+					modalBody.text(data.status);
+					modal.modal("hide");
+					target.parents(".acticle_item").remove();
+					tip.modal();
+				}
+			});
+		});
+	})
+</script>
+<%- include footer %>

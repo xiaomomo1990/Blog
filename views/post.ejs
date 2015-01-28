@@ -1,0 +1,33 @@
+﻿<%- include header %>
+<div class="post_acticle">
+<div class="col-xd-12">
+<form method="post">
+<fieldset>
+    <div class="form-group">
+      <label for="disabledTextInput">文章归类：</label>
+      <select name="class" class="form-control">
+	<option value="译文">译文</option>
+	<option value="心情随笔">心情随笔</option>
+	<option value="技术文">技术文</option>   
+  </select>
+    </div>
+    <div class="form-group">
+      <label for="disabledSelect">标题：</label>
+	  <input type="text" name="title" class="form-control"/>
+    </div>
+	<div class="form-group">
+      <label for="disabledSelect">摘要：</label>
+	  <textarea name="summary" rows="2" cols="100" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="disabledSelect">正文：</label>
+	  <textarea name="post" rows="20" cols="100" class="form-control"></textarea>
+    </div>
+	<div class="form-group">
+    <button type="submit" class="btn btn-primary pull-right">发表</button>
+	</div>
+  </fieldset>
+</form>
+</div>
+</div>
+<%- include footer %>

@@ -1,0 +1,14 @@
+<%- include header %>
+<% posts.forEach(function (post, index) { %>
+  <h3 class="acticle_title"><a href="/acticle/<%= post.class %>/<%= post._id %>"><%= post.title %></a></h3>
+  <div class="info">
+	<span class="item">
+    作者：<a href="#"><%= post.name %></a></span> <span class="item">|</span>
+	<span class="item">  
+    日期：<%= post.time.minute %> </span> <span class="item">|</span>
+	<span class="item">
+	分类：<a href="/acticle/<%= post.class %>"><%= post.class %></a></span>
+  </div>
+  <p><%- post.post %></p>
+<% }) %>
+<%- include footer %>

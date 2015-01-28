@@ -1,0 +1,22 @@
+﻿<%- include header %>
+<% if(editError){ %>
+<div class="alert alert-warning" role="alert"><%= editError %> </div>
+<% } %>
+<% posts.forEach(function (post, index) { %>
+<form method="post">
+  文章归类：<br/>
+  <select name="class">
+	<option value="译文" <% if(post.class=="译文"){ %>selected="selected"<%}%>>译文</option>
+	<option value="心情随笔" <% if(post.class=="心情随笔"){ %>selected="selected"<%}%>>心情随笔</option>
+	<option value="技术文" <% if(post.class=="技术文"){ %>selected="selected"<%}%>>技术文</option>   
+  </select><br/>
+  标题：<br />
+  <input type="text" name="title" value="<%= post.title %>"/><br />
+  摘要：<br />
+  <textarea name="summary" rows="2" cols="100"><%= post.summary %></textarea><br />
+  正文：<br />
+  <textarea name="post" rows="20" cols="100"><%= post.post %></textarea><br />
+  <input type="submit" value="更新" />
+</form>
+<% }) %>
+<%- include footer %>
